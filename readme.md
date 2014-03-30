@@ -182,7 +182,9 @@ Quote from c-sharp/HttpServerAsyncPromises.cs:
 C# calls promises 'Tasks': <a href='http://msdn.microsoft.com/en-us/library/dd449174(v=vs.110).aspx'>System.Threading.Tasks.TaskCompletionSource</a> roughly corresponds to a nodejs Deferred ([Q.defer()](https://github.com/kriskowal/q)), and [System.Threading.Tasks.Task](http://msdn.microsoft.com/en-us/library/vstudio/system.threading.tasks.task) roughly corresponds to a thenable Javascript promise:
 <table>
 <tr><th></th><th>Javascript</th><th>.NET</th></tr>
-<tr><td>creating Deferred</td> <td>[Q.defer()](https://github.com/kriskowal/q)</td> <td><a href='http://msdn.microsoft.com/en-us/library/dd449174(v=vs.110).aspx'>new TaskCompletionSource&lt;T&gt;()</a></td> </tr>
+<tr><td>creating Deferred</td> 
+    <td><a href='https://github.com/kriskowal/q'>Q.defer()</a></td> 
+    <td><a href='http://msdn.microsoft.com/en-us/library/dd449174(v=vs.110).aspx'>new TaskCompletionSource&lt;T&gt;()</a></td> </tr>
 <tr><td>resolving a Promise</td> <td>deferred.resolve()</td> <td>TaskCompletionSource.SetResult</td></tr>
 <tr><td>rejecting a Promise</td> <td>deferred.reject(ex)</td> <td>TaskCompletionSource.SetException</td></tr>
 <tr><td>getting a Promise from Deferred</td> <td>deferred.promise</td> <td>TaskCompletionSource.Task</td></tr>
@@ -249,11 +251,11 @@ There are strong parallels between the nodejs and Python async/await flavors: th
 
 <table>
 <tr><th></th><th>Javascript</th><th>Python</th></tr>
-<tr><td>creating Deferred</td> <td>[Q.defer()](https://github.com/kriskowal/q)</td> <td>[asyncio.Future](http://docs.python.org/dev/library/asyncio-task.html#future)</td> </tr>
+<tr><td>creating Deferred</td> <td><a href='https://github.com/kriskowal/q'>Q.defer()</a></td> <td><a href='http://docs.python.org/dev/library/asyncio-task.html#future'>asyncio.Future</a></td> </tr>
 <tr><td>resolving a Promise</td> <td>deferred.resolve()</td> <td>future.set_result</td></tr>
 <tr><td>rejecting a Promise</td> <td>deferred.reject(ex)</td> <td>future.set_exception</td></tr>
 <tr><td>getting a Promise from Deferred</td> <td>deferred.promise</td> <td>not needed (Deferred and Future are the same object)</td></tr>
-<tr><td>chaining promises</td> <td>promise.then()</td> <td>[future.add_done_callback](http://docs.python.org/dev/library/asyncio-task.html?highlight=add_done_callback#asyncio.Future.add_done_callback)</td></tr>
+<tr><td>chaining promises</td> <td>promise.then()</td> <td><a href='http://docs.python.org/dev/library/asyncio-task.html?highlight=add_done_callback#asyncio.Future.add_done_callback'>future.add_done_callback</a></td></tr>
 <tr><td>async/await via</td> <td>function*() generator with yield</td> <td>coroutine with 'yield from'</td></tr>
 </table>
 
@@ -264,10 +266,15 @@ The C++ standard includes Promises since C++11 (previously in boost). Note that 
 
 <table>
 <tr><th></th><th>Javascript</th><th>C++</th></tr>
-<tr><td>creating Deferred</td> <td>[Q.defer()](https://github.com/kriskowal/q)</td> <td>[std::promise](http://en.cppreference.com/w/cpp/thread/promise)</td> </tr>
-<tr><td>resolving a Promise</td> <td>deferred.resolve()</td> <td>[promise.set_value](http://en.cppreference.com/w/cpp/thread/promise/set_value)</td></tr>
-<tr><td>rejecting a Promise</td> <td>deferred.reject(ex)</td> <td>[promise.set_exception](http://en.cppreference.com/w/cpp/thread/promise/set_exception)</td></tr>
-<tr><td>getting a Promise from Deferred</td> <td>deferred.promise</td> <td>[promise.get_future()](http://en.cppreference.com/w/cpp/thread/promise/get_future)</td></tr>
+<tr><td>creating Deferred</td>
+    <td><a href='https://github.com/kriskowal/q'>Q.defer()</a></td> 
+    <td><a href='http://en.cppreference.com/w/cpp/thread/promise'>std::promise</a></td> </tr>
+<tr><td>resolving a Promise</td> <td>deferred.resolve()</td> 
+    <td><a href='http://en.cppreference.com/w/cpp/thread/promise/set_value'>promise.set_value()</a></td></tr>
+<tr><td>rejecting a Promise</td> <td>deferred.reject(ex)</td> 
+    <td><a href='http://en.cppreference.com/w/cpp/thread/promise/set_exception'>promise.set_exception()</a></td></tr>
+<tr><td>getting a Promise from Deferred</td> <td>deferred.promise</td> 
+    <td><a href='http://en.cppreference.com/w/cpp/thread/promise/get_future'>promise.get_future()</a></td></tr>
 <tr><td>chaining promises</td> <td>promise.then()</td> <td>missing!</td></tr>
 </table>
 
