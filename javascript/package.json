@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {
+    "q": "1.*",
+    "co": "*"
+  }
+}
