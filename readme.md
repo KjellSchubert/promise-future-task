@@ -10,7 +10,7 @@ The first time I worked in an environment that used callbacks & async as the pre
 Callbacks
 ---------
 
-Callbacks come in two basic flavors: async & async. An example for a sync call back is Javascript's Array.prototype.reduce: 
+Callbacks come in two basic flavors: sync & async. An example for a sync call back is Javascript's Array.prototype.reduce: 
 
     var foo = [1,2].reduce(function(accu, x) { return accu+x}, 0);
     console.log(foo);
@@ -286,6 +286,13 @@ A major omission in the current C++ standard is that atm there is no standard wa
     future2.wait(); // if C++ had a concept like Python's event loops then we'd wait for the loop to finish here instead.
 
 Since there's no standard thenable promise in the C++ standard yet there is no mention of some form of async/await in the C++ standard either yet.
+
+Futures in Java
+----------------
+
+Java 8 has a then-able future in [java.util.concurrent.Future](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html), though there's a disturbingly large amount of concurrent.Future implementations in the Java 8 framework, together with a lot of supporting classes. This part of the Java 8 framework seems even more bloated to me than its .NET counterpart.  Java 7 had a [java.util.concurrent.Future](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html) interface already the Java 7 framework provided no then-able implementations. Though if there had been then-able implementations in Java 7 they'd probably be awkward to use without support for closures/lambdas. Akka implemented its own then-able [futures](http://doc.akka.io/docs/akka/snapshot/java/futures.html). Here is an interesting article on the monadic nature of Java futures: [monadic-futures-in-java](http://zeroturnaround.com/rebellabs/monadic-futures-in-java8/), here the corresponding discussion for Javascript promises: https://gist.github.com/briancavalier/3296186, https://blog.jcoglan.com/2011/03/11/promises-are-the-monad-of-asynchronous-programming/. 
+
+There is [no equivalent of async/await](http://stackoverflow.com/questions/16539245/java-equivalent-of-c-sharp-async-await) in Java 8.
 
 Summary
 -------
